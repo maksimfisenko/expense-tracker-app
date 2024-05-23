@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -23,5 +25,10 @@ public class UserAccountServiceImpl implements UserAccountService {
         }
 
         userAccountRepository.save(userAccount);
+    }
+
+    @Override
+    public Optional<UserAccount> findUserByUsername(String username) {
+        return userAccountRepository.findByUsername(username);
     }
 }
