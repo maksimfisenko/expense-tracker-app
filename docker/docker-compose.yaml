@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:16.3
+    environment:
+      - POSTGRES_USER=${EXPENSE_TRACKER_DB_USER}
+      - POSTGRES_PASSWORD=${EXPENSE_TRACKER_DB_PASSWORD}
+      - POSTGRES_DB=${EXPENSE_TRACKER_DB_NAME}
+    ports:
+      - "${EXPENSE_TRACKER_DB_PORT}:5432"
