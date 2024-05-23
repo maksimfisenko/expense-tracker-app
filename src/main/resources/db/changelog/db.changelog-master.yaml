@@ -5,3 +5,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: 0.0.1/changelog-create-identity-schema.sql
+  - include:
+      relativeToChangelogFile: true
+      file: 0.0.1/changelog-create-expense-tracker-user-profile-table.sql
