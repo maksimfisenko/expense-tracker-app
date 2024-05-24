@@ -8,4 +8,5 @@ public interface SourceService {
     Source createSource(Source source);
     Source updateSource(Source source);
     Optional<Source> findSourceById(Long id);
+    void deleteSource(Long id);
 }

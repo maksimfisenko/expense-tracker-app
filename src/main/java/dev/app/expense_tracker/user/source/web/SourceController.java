@@ -1,6 +1,7 @@
 package dev.app.expense_tracker.user.source.web;
 
 import dev.app.expense_tracker.user.source.usecase.SourceAddUseCase;
+import dev.app.expense_tracker.user.source.usecase.SourceDeleteUseCase;
 import dev.app.expense_tracker.user.source.usecase.SourceEditUseCase;
 import dev.app.expense_tracker.user.source.web.model.SourceAddRequest;
 import dev.app.expense_tracker.user.source.web.model.SourceEditRequest;
@@ -20,6 +21,7 @@ public class SourceController {
 
     SourceAddUseCase sourceAddUseCase;
     SourceEditUseCase sourceEditUseCase;
+    SourceDeleteUseCase sourceDeleteUseCase;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,6 +33,12 @@ public class SourceController {
     @ResponseStatus(HttpStatus.OK)
     public SourceResponse updateSource(@Valid @RequestBody SourceEditRequest sourceEditRequest) {
         return sourceEditUseCase.editSource(sourceEditRequest);
+    }
+
+    @DeleteMapping("/{sourceId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteSource(@PathVariable("sourceId") Long sourceId) {
+        sourceDeleteUseCase.deleteSource(sourceId);
     }
 
 }
