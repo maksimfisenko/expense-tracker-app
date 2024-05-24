@@ -9,6 +9,7 @@ public record SourceResponse(
         String hex,
         BigDecimal balance,
         String currency,
-        Instant createdTimestamp
+        Instant createdTimestamp,
+        Instant lastModifiedTimestamp
 ) {
 }

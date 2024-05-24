@@ -20,3 +20,16 @@ alter table "expense-tracker".source
     add constraint source_user_profile_fk
         foreign key (user_profile_id) references "expense-tracker".user_profile (id);
 --rollback alter table "expense-tracker".source drop constraint source_user_profile_fk;
+
+--changeset maksimfisenko:add-expense-tracker-source-table-column-last_modified_timestamp
+--comment add column last_modified_timestamp to expense-tracker.source
+alter table "expense-tracker".source
+    add column last_modified_timestamp timestamp;
+
+update "expense-tracker".source
+set last_modified_timestamp = created_timestamp
+where last_modified_timestamp is null;
+
+alter table "expense-tracker".source
+    alter column last_modified_timestamp set not null;
+--rollback alter table "expense-tracker".source drop column last_modified_timestamp;

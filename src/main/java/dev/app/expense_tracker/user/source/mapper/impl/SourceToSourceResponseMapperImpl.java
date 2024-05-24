@@ -16,7 +16,8 @@ public class SourceToSourceResponseMapperImpl implements SourceToSourceResponseM
                 source.getHex(),
                 source.getBalance(),
                 source.getCurrency(),
-                source.getCreatedTimestamp()
+                source.getCreatedTimestamp(),
+                source.getLastModifiedTimestamp()
         );
     }
 }

@@ -6,7 +6,8 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-public record SourceAddRequest(
+public record SourceEditRequest(
+        @NotNull Long id,
         @NotBlank @Size(min = 1, max = 100) String name,
         @NotBlank @Size(min = 7, max = 7) String hex,
         @NotNull BigDecimal balance,
