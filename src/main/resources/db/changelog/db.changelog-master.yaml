@@ -8,3 +8,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: 0.0.1/changelog-create-expense-tracker-user-profile-table.sql
+  - include:
+      relativeToChangelogFile: true
+      file: 0.0.1/changelog-create-expense-tracker-source-table.sql
