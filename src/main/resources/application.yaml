@@ -6,7 +6,11 @@ spring:
     url: jdbc:postgresql://${EXPENSE_TRACKER_DB_HOST}:${EXPENSE_TRACKER_DB_PORT}/${EXPENSE_TRACKER_DB_NAME}
   jpa:
     properties:
-      hibernate.jdbc.time_zone: UTC
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        format_sql: true
+    show-sql: true
 logging:
   level:
     org:

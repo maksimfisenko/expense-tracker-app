@@ -4,17 +4,13 @@ import dev.app.expense_tracker.user.source.usecase.SourceAddUseCase;
 import dev.app.expense_tracker.user.source.usecase.SourceDeleteUseCase;
 import dev.app.expense_tracker.user.source.usecase.SourceEditUseCase;
 import dev.app.expense_tracker.user.source.usecase.SourceFindUseCase;
-import dev.app.expense_tracker.user.source.web.model.SourceAddRequest;
-import dev.app.expense_tracker.user.source.web.model.SourceEditRequest;
-import dev.app.expense_tracker.user.source.web.model.SourceResponse;
+import dev.app.expense_tracker.user.source.web.model.*;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/api/v1/sources")
@@ -47,8 +43,9 @@ public class SourceController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Collection<SourceResponse> findUserSources() {
-        return sourceFindUseCase.findSources();
+    public SourcePageResponse findUserSources(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+        SourceFindRequest sourceFindRequest = new SourceFindRequest(page, limit);
+        return sourceFindUseCase.findSources(sourceFindRequest);
     }
 
 }

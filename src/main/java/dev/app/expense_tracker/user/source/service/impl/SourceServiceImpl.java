@@ -7,6 +7,8 @@ import dev.app.expense_tracker.user.source.service.SourceService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -41,7 +43,7 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public Collection<Source> findAllSources(UserProfile owner) {
-        return sourceRepository.findAllByUserProfile(owner);
+    public Page<Source> findAllSources(UserProfile owner, Pageable pageable) {
+        return sourceRepository.findAllByUserProfile(owner, pageable);
     }
 }
