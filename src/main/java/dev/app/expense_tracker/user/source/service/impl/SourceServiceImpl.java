@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.source.service.impl;
 
+import dev.app.expense_tracker.user.profile.model.UserProfile;
 import dev.app.expense_tracker.user.source.model.Source;
 import dev.app.expense_tracker.user.source.repository.SourceRepository;
 import dev.app.expense_tracker.user.source.service.SourceService;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +38,10 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public void deleteSource(Long id) {
         sourceRepository.deleteById(id);
+    }
+
+    @Override
+    public Collection<Source> findAllSources(UserProfile owner) {
+        return sourceRepository.findAllByUserProfile(owner);
     }
 }

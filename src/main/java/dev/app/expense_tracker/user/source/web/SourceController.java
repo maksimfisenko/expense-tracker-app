@@ -3,6 +3,7 @@ package dev.app.expense_tracker.user.source.web;
 import dev.app.expense_tracker.user.source.usecase.SourceAddUseCase;
 import dev.app.expense_tracker.user.source.usecase.SourceDeleteUseCase;
 import dev.app.expense_tracker.user.source.usecase.SourceEditUseCase;
+import dev.app.expense_tracker.user.source.usecase.SourceFindUseCase;
 import dev.app.expense_tracker.user.source.web.model.SourceAddRequest;
 import dev.app.expense_tracker.user.source.web.model.SourceEditRequest;
 import dev.app.expense_tracker.user.source.web.model.SourceResponse;
@@ -13,6 +14,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/api/v1/sources")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -22,6 +25,7 @@ public class SourceController {
     SourceAddUseCase sourceAddUseCase;
     SourceEditUseCase sourceEditUseCase;
     SourceDeleteUseCase sourceDeleteUseCase;
+    SourceFindUseCase sourceFindUseCase;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -39,6 +43,12 @@ public class SourceController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteSource(@PathVariable("sourceId") Long sourceId) {
         sourceDeleteUseCase.deleteSource(sourceId);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<SourceResponse> findUserSources() {
+        return sourceFindUseCase.findSources();
     }
 
 }
