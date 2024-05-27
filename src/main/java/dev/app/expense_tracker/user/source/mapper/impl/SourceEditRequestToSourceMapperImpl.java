@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.source.mapper.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.user.source.mapper.SourceEditRequestToSourceMapper;
 import dev.app.expense_tracker.user.source.model.Source;
 import dev.app.expense_tracker.user.source.service.SourceService;
@@ -23,7 +24,7 @@ public class SourceEditRequestToSourceMapperImpl implements SourceEditRequestToS
                 .findSourceById(sourceEditRequest.id())
                 .orElseThrow(() -> {
                     String errorMessage = String.format("Source with id = %d not found", sourceEditRequest.id());
-                    return new RuntimeException(errorMessage);
+                    return new ExpenseTrackerException(errorMessage);
                 });
 
 

@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.security.mapper.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.security.mapper.RegisterRequestToUserAccountMapper;
 import dev.app.expense_tracker.security.model.UserAccount;
 import dev.app.expense_tracker.security.model.UserRole;
@@ -26,7 +27,7 @@ public class RegisterRequestToUserAccountMapperImpl implements RegisterRequestTo
     public UserAccount map(RegisterRequest registerRequest) {
         UserRole userRole = userRoleService
                 .findUserRole()
-                .orElseThrow(() -> new RuntimeException("User role not found"));
+                .orElseThrow(() -> new ExpenseTrackerException("User role not found"));
 
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(registerRequest.username().toLowerCase(Locale.ROOT));

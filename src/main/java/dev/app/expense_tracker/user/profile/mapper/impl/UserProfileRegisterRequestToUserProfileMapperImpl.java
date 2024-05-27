@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.profile.mapper.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.security.api.model.CurrentUserApiModel;
 import dev.app.expense_tracker.security.api.service.IdentityApiService;
 import dev.app.expense_tracker.user.profile.mapper.UserProfileRegisterRequestToUserProfileMapper;
@@ -23,7 +24,7 @@ public class UserProfileRegisterRequestToUserProfileMapperImpl
 
         CurrentUserApiModel currentUserApiModel = identityApiService
                 .getCurrentUserAccount()
-                .orElseThrow(() -> new RuntimeException("In order to create a profile user needs to be authorized"));
+                .orElseThrow(() -> new ExpenseTrackerException("In order to create a profile user needs to be authorized"));
 
         UserProfile userProfile = new UserProfile();
         userProfile.setId(currentUserApiModel.userAccountId());

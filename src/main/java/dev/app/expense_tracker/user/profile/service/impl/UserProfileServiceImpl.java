@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.profile.service.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.user.profile.model.UserProfile;
 import dev.app.expense_tracker.user.profile.repository.UserProfileRepository;
 import dev.app.expense_tracker.user.profile.service.UserProfileService;
@@ -22,7 +23,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         if (userProfileRepository.existsById(userProfile.getId())) {
             String errorMessage = String.format("User profile with id = %d already exists", userProfile.getId());
-            throw new RuntimeException(errorMessage);
+            throw new ExpenseTrackerException(errorMessage);
         }
 
         userProfileRepository.save(userProfile);

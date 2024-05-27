@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.security.service.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.security.model.UserAccount;
 import dev.app.expense_tracker.security.repository.UserAccountRepository;
 import dev.app.expense_tracker.security.service.UserAccountService;
@@ -21,7 +22,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     public void createUserAccount(UserAccount userAccount) {
 
         if (userAccountRepository.existsByUsername(userAccount.getUsername())) {
-            throw new RuntimeException("Account with this username already exists");
+            throw new ExpenseTrackerException("Account with this username already exists");
         }
 
         userAccountRepository.save(userAccount);

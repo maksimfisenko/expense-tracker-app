@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.source.usecase.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.user.profile.api.service.CurrentUserProfileApiService;
 import dev.app.expense_tracker.user.profile.model.UserProfile;
 import dev.app.expense_tracker.user.source.mapper.SourceEditRequestToSourceMapper;
@@ -34,7 +35,7 @@ public class SourceEditUseCaseFacade implements SourceEditUseCase {
                 .map(Source::getUserProfile)
                 .orElseThrow(() -> {
                     String errorMessage = String.format("Source with id = %d not found", sourceEditRequest.id());
-                    return new RuntimeException(errorMessage);
+                    return new ExpenseTrackerException(errorMessage);
                 });
 
         if (!actor.equals(owner)) {
@@ -42,7 +43,7 @@ public class SourceEditUseCaseFacade implements SourceEditUseCase {
                     "Editing source with id = %d not possible as %s is not its owner.",
                     sourceEditRequest.id(),
                     actor.getName());
-            throw new RuntimeException(errorMessage);
+            throw new ExpenseTrackerException(errorMessage);
         }
 
         Source source = sourceEditRequestToSourceMapper.map(sourceEditRequest);

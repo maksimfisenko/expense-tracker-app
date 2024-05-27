@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.security.service.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.security.service.AccessTokenService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
                 .of(authentication.getPrincipal())
                 .filter(UserDetails.class::isInstance)
                 .map(UserDetails.class::cast)
-                .orElseThrow(() -> new RuntimeException("Couldn't create UserDetails obj from Authentication obj"));
+                .orElseThrow(() -> new ExpenseTrackerException("Couldn't create UserDetails obj from Authentication obj"));
 
         List<String> roles = userDetails
                 .getAuthorities()

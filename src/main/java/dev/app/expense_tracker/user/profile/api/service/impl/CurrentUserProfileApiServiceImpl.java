@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.profile.api.service.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.security.api.model.CurrentUserApiModel;
 import dev.app.expense_tracker.security.api.service.IdentityApiService;
 import dev.app.expense_tracker.user.profile.api.service.CurrentUserProfileApiService;
@@ -23,7 +24,7 @@ public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiSe
 
         CurrentUserApiModel currentUserApiModel = identityApiService
                 .getCurrentUserAccount()
-                .orElseThrow(() -> new RuntimeException("User should be authenticated"));
+                .orElseThrow(() -> new ExpenseTrackerException("User should be authenticated"));
         return userProfileService
                 .findUserProfileById(currentUserApiModel.userAccountId())
                 .orElseThrow(() -> {
@@ -31,7 +32,7 @@ public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiSe
                             "User with id = %d does not exist",
                             currentUserApiModel.userAccountId()
                     );
-                    return new RuntimeException(errorMessage);
+                    return new ExpenseTrackerException(errorMessage);
                 });
     }
 }

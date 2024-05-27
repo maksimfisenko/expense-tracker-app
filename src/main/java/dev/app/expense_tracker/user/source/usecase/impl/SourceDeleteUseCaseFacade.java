@@ -1,5 +1,6 @@
 package dev.app.expense_tracker.user.source.usecase.impl;
 
+import dev.app.expense_tracker.common.exception.ExpenseTrackerException;
 import dev.app.expense_tracker.user.profile.api.service.CurrentUserProfileApiService;
 import dev.app.expense_tracker.user.profile.model.UserProfile;
 import dev.app.expense_tracker.user.source.mapper.SourceEditRequestToSourceMapper;
@@ -7,8 +8,6 @@ import dev.app.expense_tracker.user.source.mapper.SourceToSourceResponseMapper;
 import dev.app.expense_tracker.user.source.model.Source;
 import dev.app.expense_tracker.user.source.service.SourceService;
 import dev.app.expense_tracker.user.source.usecase.SourceDeleteUseCase;
-import dev.app.expense_tracker.user.source.web.model.SourceEditRequest;
-import dev.app.expense_tracker.user.source.web.model.SourceResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -34,7 +33,7 @@ public class SourceDeleteUseCaseFacade implements SourceDeleteUseCase {
                 .map(Source::getUserProfile)
                 .orElseThrow(() -> {
                     String errorMessage = String.format("Source with id = %d not found", sourceId);
-                    return new RuntimeException(errorMessage);
+                    return new ExpenseTrackerException(errorMessage);
                 });
 
         if (!actor.equals(owner)) {
@@ -42,7 +41,7 @@ public class SourceDeleteUseCaseFacade implements SourceDeleteUseCase {
                     "Deleting source with id = %d not possible as %s is not its owner.",
                     sourceId,
                     actor.getName());
-            throw new RuntimeException(errorMessage);
+            throw new ExpenseTrackerException(errorMessage);
         }
 
         sourceService.deleteSource(sourceId);
