@@ -11,3 +11,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: 0.0.1/changelog-create-expense-tracker-source-table.sql
+  - include:
+      relativeToChangelogFile: true
+      file: 0.0.1/changelog-create-expense-tracker-category-table.sql
