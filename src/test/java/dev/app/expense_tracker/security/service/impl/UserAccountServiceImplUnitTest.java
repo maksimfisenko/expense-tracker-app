@@ -100,12 +100,32 @@ class UserAccountServiceImplUnitTest {
         );
 
         Optional<UserAccount> actualResult = userAccountService.findUserByUsername(expectedUserAccount.getUsername());
-        assertEquals(Optional.of(expectedUserAccount), actualResult);
 
-        // TODO: finish this test
+        assertEquals(Optional.of(expectedUserAccount), actualResult);
+        Mockito.verify(
+                userAccountRepository,
+                Mockito.times(1)
+        ).findByUsername(Mockito.any());
 
     }
 
-    // TODO: add last test
+    @Test
+    void findUserByUsername_shouldReturnEmptyUserAccount() {
+
+        Mockito.when(
+                userAccountRepository.findByUsername("demo_user@mail.com")
+        ).thenReturn(
+                Optional.empty()
+        );
+
+        Optional<UserAccount> actualResult = userAccountService.findUserByUsername("demo_user@mail.com");
+
+        assertEquals(Optional.empty(), actualResult);
+        Mockito.verify(
+                userAccountRepository,
+                Mockito.times(1)
+        ).findByUsername(Mockito.any());
+
+    }
 
 }
