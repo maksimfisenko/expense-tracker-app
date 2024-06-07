@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.2.6'
 	id 'io.spring.dependency-management' version '1.1.5'
 	id 'org.sonarqube' version '5.0.0.4638'
+	id 'jacoco'
 }
 
 group = 'dev.app'
@@ -39,8 +40,27 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen'
+
+	implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+sonar {
+	properties {
+		property 'sonar.host.url', 'http://localhost:9000'
+		property 'sonar.token', 'sqp_1b0599a0c72e593e5b554b2c23f0c230ef042051'
+	}
+}
+
+
+jacocoTestReport {
+	reports {
+		xml.setRequired(true)
+	}
+	dependsOn test
 }

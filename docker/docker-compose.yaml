@@ -10,4 +10,4 @@ services:
   sonar:
     image: sonarqube:10.5.1-community
     ports:
-      - '9000:900'
+      - '9000:9000'
