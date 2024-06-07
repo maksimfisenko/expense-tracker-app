@@ -85,7 +85,7 @@ class UserDetailsServiceImplUnitTest {
 
         assertThrows(
                 UsernameNotFoundException.class,
-                () -> userDetailsService.loadUserByUsername(userAccount.getUsername())
+                () -> userDetailsService.loadUserByUsername("demo_user@mail.com")
         );
         Mockito.verify(
                 userAccountToUserMapper,
