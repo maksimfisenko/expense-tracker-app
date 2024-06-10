@@ -153,7 +153,7 @@ class CategoryServiceImplUnitTest {
 
     @Test
     void findAllCategories_shouldReturnNonEmptyCategories() {
-        // TODO: 
+        // TODO: finish test
     }
 
 }
