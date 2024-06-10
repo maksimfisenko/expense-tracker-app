@@ -27,7 +27,6 @@ public class CategoryEditRequestToCategoryMapperImpl implements CategoryEditRequ
                     return new ExpenseTrackerException(errorMessage);
                 });
 
-
         currentCategory.setName(categoryEditRequest.name());
         currentCategory.setHex(categoryEditRequest.hex());
         currentCategory.setCurrency(categoryEditRequest.currency());

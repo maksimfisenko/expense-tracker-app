@@ -4,6 +4,8 @@ import dev.app.expense_tracker.user.category.model.Category;
 import dev.app.expense_tracker.user.category.repository.CategoryRepository;
 import dev.app.expense_tracker.user.category.service.CategoryService;
 import dev.app.expense_tracker.user.profile.model.UserProfile;
+import dev.app.expense_tracker.user.subcategory.model.Subcategory;
+import dev.app.expense_tracker.user.subcategory.repository.SubcategoryRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -19,10 +21,19 @@ import java.util.Optional;
 public class CategoryServiceImpl implements CategoryService {
 
     CategoryRepository categoryRepository;
+    SubcategoryRepository subcategoryRepository;
 
     @Override
     public Category createCategory(Category category) {
-        return categoryRepository.save(category);
+
+        Subcategory subcategory = new Subcategory();
+        subcategory.setName("Default");
+
+        Category savedCategory = categoryRepository.save(category);
+        subcategory.setCategory(savedCategory);
+        subcategoryRepository.save(subcategory);
+
+        return savedCategory;
     }
 
     @Override
