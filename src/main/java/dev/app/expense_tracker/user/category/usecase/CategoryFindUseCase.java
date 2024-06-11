@@ -7,5 +7,6 @@ import org.springframework.validation.annotation.Validated;
 
 @Validated
 public interface CategoryFindUseCase {
-    CategoryPageResponse findCategories(@Valid CategoryFindRequest categoryFindRequest);
+    CategoryPageResponse findExpenseCategories(@Valid CategoryFindRequest categoryFindRequest);
+    CategoryPageResponse findIncomeCategories(@Valid CategoryFindRequest categoryFindRequest);
 }

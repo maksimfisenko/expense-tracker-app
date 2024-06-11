@@ -2,6 +2,7 @@ package dev.app.expense_tracker.user.category.mapper.impl;
 
 import dev.app.expense_tracker.user.category.mapper.CategoryAddRequestToCategoryMapper;
 import dev.app.expense_tracker.user.category.model.Category;
+import dev.app.expense_tracker.user.category.model.CategoryType;
 import dev.app.expense_tracker.user.category.web.model.CategoryAddRequest;
 import dev.app.expense_tracker.user.profile.api.service.CurrentUserProfileApiService;
 import lombok.AccessLevel;
@@ -20,6 +21,7 @@ public class CategoryAddRequestToCategoryMapperImpl implements CategoryAddReques
     public Category map(CategoryAddRequest categoryAddRequest) {
 
         Category category = new Category();
+        category.setType(CategoryType.valueOf(categoryAddRequest.type()));
         category.setName(categoryAddRequest.name());
         category.setHex(categoryAddRequest.hex());
         category.setCurrency(categoryAddRequest.currency());

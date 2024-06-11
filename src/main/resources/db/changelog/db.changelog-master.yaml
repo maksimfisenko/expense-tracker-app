@@ -17,3 +17,6 @@ databaseChangeLog:
   - include:
       relativeToChangelogFile: true
       file: 0.0.1/changelog-create-expense-tracker-subcategory-table.sql
+  - include:
+      relativeToChangelogFile: true
+      file: 0.0.1/add-expense-tracker-category-type-column.sql

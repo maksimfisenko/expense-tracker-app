@@ -17,6 +17,7 @@ public class CategoryToCategoryResponseMapperImpl implements CategoryToCategoryR
     public CategoryResponse map(Category category) {
         return new CategoryResponse(
                 category.getId(),
+                category.getType(),
                 category.getName(),
                 category.getHex(),
                 category.getCurrency(),

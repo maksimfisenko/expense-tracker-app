@@ -38,6 +38,11 @@ public abstract class Category_ {
 	public static volatile SingularAttribute<Category, Long> id;
 	
 	/**
+	 * @see dev.app.expense_tracker.user.category.model.Category#type
+	 **/
+	public static volatile SingularAttribute<Category, CategoryType> type;
+	
+	/**
 	 * @see dev.app.expense_tracker.user.category.model.Category
 	 **/
 	public static volatile EntityType<Category> class_;
@@ -57,6 +62,7 @@ public abstract class Category_ {
 	public static final String HEX = "hex";
 	public static final String CURRENCY = "currency";
 	public static final String ID = "id";
+	public static final String TYPE = "type";
 	public static final String LAST_MODIFIED_TIMESTAMP = "lastModifiedTimestamp";
 	public static final String USER_PROFILE = "userProfile";
 

@@ -12,5 +12,6 @@ public interface CategoryService {
     Category updateCategory(Category category);
     Optional<Category> findCategoryById(Long id);
     void deleteCategory(Long id);
-    Page<Category> findAllCategories(UserProfile owner, Pageable pageable);
+    Page<Category> findAllExpenseCategories(UserProfile owner, Pageable pageable);
+    Page<Category> findAllIncomeCategories(UserProfile owner, Pageable pageable);
 }

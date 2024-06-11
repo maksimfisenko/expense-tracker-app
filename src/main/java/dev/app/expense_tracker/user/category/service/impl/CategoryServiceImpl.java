@@ -1,6 +1,7 @@
 package dev.app.expense_tracker.user.category.service.impl;
 
 import dev.app.expense_tracker.user.category.model.Category;
+import dev.app.expense_tracker.user.category.model.CategoryType;
 import dev.app.expense_tracker.user.category.repository.CategoryRepository;
 import dev.app.expense_tracker.user.category.service.CategoryService;
 import dev.app.expense_tracker.user.profile.model.UserProfile;
@@ -52,7 +53,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Page<Category> findAllCategories(UserProfile owner, Pageable pageable) {
-        return categoryRepository.findAllByUserProfile(owner, pageable);
+    public Page<Category> findAllExpenseCategories(UserProfile owner, Pageable pageable) {
+        return categoryRepository.findAllByUserProfileAndType(owner, CategoryType.valueOf("EXPENSE"), pageable);
+    }
+
+    @Override
+    public Page<Category> findAllIncomeCategories(UserProfile owner, Pageable pageable) {
+        return categoryRepository.findAllByUserProfileAndType(owner, CategoryType.valueOf("INCOME"), pageable);
     }
 }

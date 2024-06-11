@@ -21,6 +21,10 @@ public class Category {
     private Long id;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CategoryType type;
+
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)

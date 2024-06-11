@@ -29,14 +29,27 @@ public class CategoryFindUseCaseFacade implements CategoryFindUseCase {
     CurrentUserProfileApiService currentUserProfileApiService;
 
     @Override
-    public CategoryPageResponse findCategories(CategoryFindRequest categoryFindRequest) {
+    public CategoryPageResponse findExpenseCategories(CategoryFindRequest categoryFindRequest) {
 
         UserProfile owner = currentUserProfileApiService.getCurrentUserProfile();
 
         Sort sort = Sort.by(Sort.Direction.ASC, CREATED_TIMESTAMP);
         Pageable pageable = PageRequest.of(categoryFindRequest.page(), categoryFindRequest.limit(), sort);
 
-        Page<Category> pageableCategoryResult = categoryService.findAllCategories(owner, pageable);
+        Page<Category> pageableCategoryResult = categoryService.findAllExpenseCategories(owner, pageable);
+
+        return categoryPageToCategoryPageResponseMapper.map(pageableCategoryResult);
+    }
+
+    @Override
+    public CategoryPageResponse findIncomeCategories(CategoryFindRequest categoryFindRequest) {
+
+        UserProfile owner = currentUserProfileApiService.getCurrentUserProfile();
+
+        Sort sort = Sort.by(Sort.Direction.ASC, CREATED_TIMESTAMP);
+        Pageable pageable = PageRequest.of(categoryFindRequest.page(), categoryFindRequest.limit(), sort);
+
+        Page<Category> pageableCategoryResult = categoryService.findAllIncomeCategories(owner, pageable);
 
         return categoryPageToCategoryPageResponseMapper.map(pageableCategoryResult);
     }

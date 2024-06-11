@@ -41,11 +41,22 @@ public class CategoryController {
         categoryDeleteUseCase.deleteCategory(categoryId);
     }
 
-    @GetMapping
+    @GetMapping("/expenses")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryPageResponse findUserCategories(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+    public CategoryPageResponse findUserExpenseCategories(
+            @RequestParam("page") int page,
+            @RequestParam("limit") int limit) {
         CategoryFindRequest categoryFindRequest = new CategoryFindRequest(page, limit);
-        return categoryFindUseCase.findCategories(categoryFindRequest);
+        return categoryFindUseCase.findExpenseCategories(categoryFindRequest);
+    }
+
+    @GetMapping("/income")
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryPageResponse findUserIncomeCategories(
+            @RequestParam("page") int page,
+            @RequestParam("limit") int limit) {
+        CategoryFindRequest categoryFindRequest = new CategoryFindRequest(page, limit);
+        return categoryFindUseCase.findIncomeCategories(categoryFindRequest);
     }
 
 }
